@@ -25,10 +25,6 @@ public class PessoaDAO
 	    {
 		return pes;
 	    }
-	    else
-	    {
-		//System.out.println("Pessoa " + id + " não encontrada!");
-	    }
 	}
 	return null;
     }

@@ -136,7 +136,7 @@ public class Avaliacao
     @Override
     public String toString()
     {
-	return "Avaliacao{" + "id=" + id + ", pontuacao=" + pontuacao + "\n, pessoa=" + pessoa + "\n, cerveja=" + cerveja + '}';
+	return "Avaliacao{" + "id=" + id + ", pontuacao=" + pontuacao + "\npessoa=" + pessoa + "\ncerveja=" + cerveja + '}';
     }
 
 }

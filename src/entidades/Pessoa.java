@@ -90,7 +90,7 @@ public class Pessoa
     }
 
     //Descobre o maior id da lista no bancoFake
-    private int ultimoID()
+    public int ultimoID()
     {
 	int id = 0;
 	int cont = 0;

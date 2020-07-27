@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import bdFake.BancoFake;
 import java.util.ArrayList;
 
 /**
@@ -13,16 +14,26 @@ import java.util.ArrayList;
  */
 public class Cerveja
 {
+
     private int id;
     private String nome;
     private String marca;
     private String descricao;
-    private int teorAlcoolico;   
-    
+    private int teorAlcoolico;
+
     private ArrayList<Avaliacao> cervejas = new ArrayList<Avaliacao>();
 
     public Cerveja()
     {
+    }
+
+    public Cerveja(String nome, String marca, String descricao, int teorAlcoolico)
+    {
+	setId();
+	this.nome = nome;
+	this.marca = marca;
+	this.descricao = descricao;
+	this.teorAlcoolico = teorAlcoolico;
     }
 
     public Cerveja(int id, String nome, String marca, String descricao, int teorAlcoolico)
@@ -39,9 +50,9 @@ public class Cerveja
 	return id;
     }
 
-    public void setId(int id)
+    private void setId()
     {
-	this.id = id;
+	this.id = ultimoID() + 1;
     }
 
     public String getNome()
@@ -84,12 +95,45 @@ public class Cerveja
 	this.teorAlcoolico = teorAlcoolico;
     }
 
+    //Descobre o maior id da lista no bancoFake
+    public int ultimoID()
+    {
+	int id = 0;
+	int cont = 0;
+	
+	//Carrega a tabela pessoa
+	ArrayList<Cerveja> tb_Cerveja = BancoFake.getTB_CERVEJA();
+
+	try
+	{
+	    //percorre a lista se encontrar o maios ID:
+	    for (Cerveja cerv : tb_Cerveja)
+	    {
+		if (cont == 0)
+		{
+		    id = cerv.getId();
+		}
+
+		if (cerv.getId() > id)
+		{
+		    id = cerv.getId();
+		}
+
+		cont += cont;
+
+	    }
+	}
+	catch (Exception e)
+	{
+	    e.printStackTrace();
+	}
+	return id;
+    }
+
     @Override
     public String toString()
     {
-	return "Cerveja{" + "id=" + id + ", nome=" + nome + ", marca=" + marca + ", descricao=" + descricao + ", teorAlcoolico=" + teorAlcoolico + '}';
+	return "Cerveja{" + "id=" + id + ", nome=" + nome + ", marca=" + marca + ", teorAlcoolico=" + teorAlcoolico + "%" + ",\ndescricao=" + descricao + '}' + "\n";
     }
-    
-       
-    
+
 }
