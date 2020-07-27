@@ -5,6 +5,9 @@
  */
 package entidades;
 
+import bdFake.BancoFake;
+import java.util.ArrayList;
+
 /*
 ASSOCIAÇÃO DE CLASSES:
 
@@ -31,6 +34,14 @@ public class Avaliacao
     {
     }
 
+    public Avaliacao(int pontuacao, Pessoa pessoa, Cerveja cerveja)
+    {
+	setId();
+	this.pontuacao = pontuacao;
+	this.pessoa = pessoa;
+	this.cerveja = cerveja;
+    }
+
     public Avaliacao(int id, int pontuacao, Pessoa pessoa, Cerveja cerveja)
     {
 	this.id = id;
@@ -38,15 +49,15 @@ public class Avaliacao
 	this.pessoa = pessoa;
 	this.cerveja = cerveja;
     }
-     
+
     public int getId()
     {
 	return id;
     }
 
-    public void setId(int id)
+    private void setId()
     {
-	this.id = id;
+	this.id = ultimoID() + 1;
     }
 
     public int getPontuacao()
@@ -63,9 +74,9 @@ public class Avaliacao
     }
 
     //valida se pontuação esta entre 0 e 10:
-    public boolean pontuacaoIsValid(int ponto)
+    public static boolean pontuacaoIsValid(int ponto)
     {
-	return (ponto <= 0) & (ponto <= 10);
+	return (ponto >= 0) & (ponto <= 10);
     }
 
     public Pessoa getPessoa()
@@ -86,6 +97,40 @@ public class Avaliacao
     public void setCerveja(Cerveja cerveja)
     {
 	this.cerveja = cerveja;
+    }
+
+    //Descobre o maior id da lista no bancoFake
+    private int ultimoID()
+    {
+	int id = 0;
+	int cont = 0;
+	//Carrega a tabela pessoa
+	ArrayList<Avaliacao> tb_avaliacao = BancoFake.getTB_AVALIACAO();
+
+	try
+	{
+	    //percorre a lista se encontrar o maios ID:
+	    for (Avaliacao aval : tb_avaliacao)
+	    {
+		if (cont == 0)
+		{
+		    id = aval.getId();
+		}
+
+		if (aval.getId() > id)
+		{
+		    id = aval.getId();
+		}
+
+		cont += cont;
+
+	    }
+	}
+	catch (Exception e)
+	{
+	    e.printStackTrace();
+	}
+	return id;
     }
 
     @Override

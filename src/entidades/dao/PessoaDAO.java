@@ -27,7 +27,7 @@ public class PessoaDAO
 	    }
 	    else
 	    {
-		System.out.println("Pessoa " + id + " não encontrada!");
+		//System.out.println("Pessoa " + id + " não encontrada!");
 	    }
 	}
 	return null;

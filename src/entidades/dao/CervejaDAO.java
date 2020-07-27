@@ -28,7 +28,7 @@ public class CervejaDAO
 	    }
 	    else
 	    {
-		System.out.println("Cerveja " + id + " não encontrada!");
+		//System.out.println("Cerveja " + id + " não encontrada!");
 	    }
 	}
 	return null;

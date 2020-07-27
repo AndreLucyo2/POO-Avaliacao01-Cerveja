@@ -7,8 +7,8 @@ package bdFake;
 
 import entidades.Avaliacao;
 import entidades.Cerveja;
-import entidades.dao.CervejaDAO;
 import entidades.Pessoa;
+import entidades.dao.CervejaDAO;
 import entidades.dao.PessoaDAO;
 import java.util.ArrayList;
 

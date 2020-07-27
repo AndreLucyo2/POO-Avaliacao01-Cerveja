@@ -27,6 +27,14 @@ public class Pessoa
     {
     }
 
+    public Pessoa(String nome, String sexo, int idade)
+    {
+	setId();
+	this.nome = nome;
+	this.sexo = sexo;
+	this.idade = idade;
+    }
+
     public Pessoa(int id, String nome, String sexo, int idade)
     {
 	this.id = id;
@@ -41,7 +49,7 @@ public class Pessoa
     }
 
     //pessoa nova pega o ultimo id
-    public void setId()
+    private void setId()
     {
 	this.id = ultimoID() + 1;
     }
@@ -120,6 +128,5 @@ public class Pessoa
     {
 	return "Pessoa{" + "id=" + id + ", nome=" + nome + ", sexo=" + sexo + ", idade=" + idade + ", avaliacoes=" + avaliacoes + '}';
     }
-
 
 }
