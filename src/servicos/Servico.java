@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servico;
+package servicos;
 
 import bdFake.BancoFake;
 import entidades.Cerveja;
@@ -16,7 +16,7 @@ import java.util.Scanner;
  *
  * @author Andre
  */
-public class Servicos
+public class Servico
 {
 
     public void printCabecalho(int cont)

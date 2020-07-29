@@ -12,7 +12,7 @@ import entidades.dao.CervejaDAO;
 import entidades.dao.PessoaDAO;
 import java.text.ParseException;
 import java.util.Scanner;
-import servico.Servicos;
+import servicos.Servico;
 
 /**
  *
@@ -29,32 +29,29 @@ public class Program
 	//+++++++++++++++++++++++++++++++++++++++++++
 
 	Scanner scan = new Scanner(System.in);
-	int cont = 1;
+	
 	int idPessoa = 0;
 	int idCerveja = 0;
-	String continuar;
-
-	
-	//instancia dos serviços
-	Servicos servicos = new Servicos();
+	int cont = 1;
+	String continuar="";
 
 	do
 	{
 	    //Mostra cabeçalho inicial:
-	    servicos.printCabecalho(cont);
+	    new Servico().printCabecalho(cont);
 
 	    //PESSOA:
 	    System.out.print("Cadastrar nova pessoa? S/N ");
-	    String cadastrarP = scan.next();
+	    String cadastrarP = scan.next().toUpperCase();
 	    if (cadastrarP.equals("S"))
 	    {
 		//PEGA O ID gerado
-		idPessoa = servicos.idPessoaNova();
+		idPessoa = new Servico().idPessoaNova();
 	    }
 	    else
 	    {
 		//PEGA ID SELECIONADO:
-		idPessoa = servicos.idPessoaSelecionada(bd);
+		idPessoa = new Servico().idPessoaSelecionada(bd);
 
 		if (PessoaDAO.findByID(idPessoa) == null)
 		{
@@ -66,17 +63,17 @@ public class Program
 
 	    //CERVEJA:
 	    System.out.print("\nCadastrar nova Cerveja? S/N ");
-	    String cadastrarC = scan.next();
+	    String cadastrarC = scan.next().toUpperCase();
 
 	    if (cadastrarC.equals("S"))
 	    {
 		//PEGA O ID gerado
-		idCerveja = servicos.idCervejaNova();
+		idCerveja = new Servico().idCervejaNova();
 	    }
 	    else
 	    {
 		//PEGA ID SELECIONADO:
-		idCerveja = servicos.idCervejaSelecionada(bd);
+		idCerveja = new Servico().idCervejaSelecionada(bd);
 
 		if (CervejaDAO.findById(idCerveja) == null)
 		{
@@ -99,10 +96,11 @@ public class Program
 	    //AVALIACAO:
 	    Avaliacao avaliacao1 = new Avaliacao(pontos, PessoaDAO.findByID(idPessoa), CervejaDAO.findById(idCerveja));
 
+	    //GRAVA AVALIAÇÃO:
 	    AvaliacaoDAO.add(avaliacao1);
 
 	    System.out.println("\nDeseja fazer nova avaliaçao? S/N ");
-	    continuar = scan.next();
+	    continuar = scan.next().toUpperCase();
 	    cont += cont;
 	}
 	while (continuar.equals("S"));
